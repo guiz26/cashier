@@ -432,7 +432,7 @@ trait BillableTrait {
 	 */
 	public function getSubscriptionEndDate()
 	{
-		return $this->subscription_ends_at;
+		return $this->end_at;
 	}
 
 	/**
@@ -443,7 +443,7 @@ trait BillableTrait {
 	 */
 	public function setSubscriptionEndDate($date)
 	{
-		$this->subscription_ends_at = $date;
+		$this->end_at = $date;
 
 		return $this;
 	}

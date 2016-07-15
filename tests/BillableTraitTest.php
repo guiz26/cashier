@@ -64,22 +64,22 @@ class BillableTraitTest extends PHPUnit_Framework_TestCase {
 	{
 		$billable = new BillableTraitCardUpFrontTestStub;
 		$billable->stripe_active = true;
-		$billable->subscription_ends_at = null;
+		$billable->end_at = null;
 		$this->assertTrue($billable->subscribed());
 
 		$billable = new BillableTraitCardUpFrontTestStub;
 		$billable->stripe_active = false;
-		$billable->subscription_ends_at = null;
+		$billable->end_at = null;
 		$this->assertFalse($billable->subscribed());
 
 		$billable = new BillableTraitCardUpFrontTestStub;
 		$billable->stripe_active = false;
-		$billable->subscription_ends_at = Carbon\Carbon::now()->addDays(5);
+		$billable->end_at = Carbon\Carbon::now()->addDays(5);
 		$this->assertTrue($billable->subscribed());
 
 		$billable = new BillableTraitCardUpFrontTestStub;
 		$billable->stripe_active = false;
-		$billable->subscription_ends_at = Carbon\Carbon::now()->subDays(5);
+		$billable->end_at = Carbon\Carbon::now()->subDays(5);
 		$this->assertFalse($billable->subscribed());
 	}
 
@@ -89,7 +89,7 @@ class BillableTraitTest extends PHPUnit_Framework_TestCase {
 		$billable = new BillableTraitTestStub;
 		$billable->trial_ends_at = null;
 		$billable->stripe_active = null;
-		$billable->subscription_ends_at = null;
+		$billable->end_at = null;
 		$this->assertFalse($billable->subscribed());
 
 		$billable = new BillableTraitTestStub;
@@ -105,19 +105,19 @@ class BillableTraitTest extends PHPUnit_Framework_TestCase {
 		$billable = new BillableTraitTestStub;
 		$billable->stripe_active = false;
 		$billable->trial_ends_at = Carbon\Carbon::now()->subDays(5);
-		$billable->subscription_ends_at = null;
+		$billable->end_at = null;
 		$this->assertFalse($billable->subscribed());
 
 		$billable = new BillableTraitTestStub;
 		$billable->trial_ends_at = null;
 		$billable->stripe_active = null;
-		$billable->subscription_ends_at = Carbon\Carbon::now()->addDays(5);
+		$billable->end_at = Carbon\Carbon::now()->addDays(5);
 		$this->assertTrue($billable->subscribed());
 
 		$billable = new BillableTraitTestStub;
 		$billable->trial_ends_at = null;
 		$billable->stripe_active = null;
-		$billable->subscription_ends_at = Carbon\Carbon::now()->subDays(5);
+		$billable->end_at = Carbon\Carbon::now()->subDays(5);
 		$this->assertFalse($billable->subscribed());
 	}
 
